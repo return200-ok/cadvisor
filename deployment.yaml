@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cadvisor
+  namespace: monitoring
+spec:
+  selector:
+    matchLabels:
+      app: cadvisor
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: cadvisor
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/hostname
+                operator: In
+                values:
+                - hostname
+      containers:
+      - name: cadvisor
+        image: google/cadvisor:latest
+        resource:
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+          - mountPath: /rootfs
+            name: root-volume
+          - mountPath: /var/run
+            name: run-volume
+          - mountPath: /sys
+            name: sys-volume
+          - mountPath: /var/lib/docker/
+            name: docker-volume
+          - mountPath: /dev/disk/
+            name: disk-volume
+      volumes:
+      - name: root-volume
+        hostPath:
+          path: /
+      - name: root-volume
+        hostPath:
+          path: /var/run
+      - name: run-volume
+        hostPath:
+          path: /sys
+      - name: docker-volume
+        hostPath:
+          path: /var/lib/docker/
+      - name: disk-volume
+        hostPath:
+          path: /dev/disk/
+
+      # imagePullSecrets:
+      # - name: image-secret
+      
