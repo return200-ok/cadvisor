@@ -1,8 +1,10 @@
-version: '3.2'
+version: '3'
 services:
   cadvisor:
     image: google/cadvisor:latest
     container_name: cadvisor
+    deploy:
+      mode: global
     ports:
     - 8080:8080
     volumes:
