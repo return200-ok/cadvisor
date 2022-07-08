@@ -7,10 +7,11 @@ sudo docker run \
   --publish=8080:8080 \
   --detach=true \
   --name=cadvisor \
-  google/cadvisor:latest \
+  google/cadvisor:latest
+  #optional
   --docker="tcp://172.17.0.1:2375" #if dockerd run via tcp
   --docker="unix:///var/run/docker.sock" #if dockerd run via unix socket
-  --docker_root="/var/lib/docker": #DEPRECATED: docker root is read from docker info (this is a fallback, default: /var/lib/docker) (default "/var/lib/docker")
+  --docker_root="/var/lib/docker" #DEPRECATED: docker root is read from docker info (this is a fallback, default: /var/lib/docker) (default "/var/lib/docker")
   --docker-tls #use TLS to connect to docker
   --docker-tls-cert="cert.pem" #client certificate for TLS-connection with docker
   --docker-tls-key="key.pem" #private key for TLS-connection with docker
