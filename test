@@ -1,0 +1,18 @@
+docker --host 127.0.0.1:2376 --tls --tlscacert /home/caolv/github.com_return200-ok/docker-daemon-socket/ca.pem --tlscert /home/caolv/github.com_return200-ok/docker-daemon-socket/cert.pem --tlskey /home/caolv/github.com_return200-ok/docker-daemon-socket/key.pem container run \
+  --volume=/:/rootfs:ro \
+  --volume=/var/run:/var/run:ro \
+  --volume=/sys:/sys:ro \
+  --volume=/var/lib/docker/:/var/lib/docker:ro \
+  --volume=/dev/disk/:/dev/disk:ro \
+  --volume=/home/caolv/github.com_return200-ok/docker-daemon-socket/ca.pem:/home/ca.pem \
+  --volume=/home/caolv/github.com_return200-ok/docker-daemon-socket/cert.pem:/home/cert.pem \
+  --volume=/home/caolv/github.com_return200-ok/docker-daemon-socket/key.pem:/home/key.pem \
+  --publish=8080:8080 \
+  --detach=true \
+  --name=cadvisor \
+  google/cadvisor:latest \
+  --docker="https://127.17.0.1:2376" \
+  --docker-tls \
+  --docker-tls-cert="/home/cert.pem" \
+  --docker-tls-key="/home/key.pem" \
+  --docker-tls-ca="/home/ca.pem" 
