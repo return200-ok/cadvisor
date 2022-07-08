@@ -8,4 +8,5 @@ sudo docker run \
   --detach=true \
   --name=cadvisor \
   google/cadvisor:latest \
-  --docker="tcp://172.17.0.1:2375"
+  --docker="tcp://172.17.0.1:2375" #if dockerd run via tcp
+  --docker="unix:///var/run/docker.sock" #if dockerd run via unix socket
