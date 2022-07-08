@@ -21,6 +21,10 @@ services:
     - /sys:/sys:ro
     - /var/lib/docker/:/var/lib/docker:ro
     - /dev/disk/:/dev/disk:ro
+    #mount certificate file
+    - ./cert.pem:./cert.pem
+    - ./key.pem:./key.pem
+    - ./ca.pem:./ca.pem
     networks:
       - networkName
 
