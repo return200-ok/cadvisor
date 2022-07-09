@@ -1,6 +1,5 @@
 docker --host 127.0.0.1:2376 --tls --tlscacert /home/caolv/github.com_return200-ok/docker-daemon-socket/ca.pem --tlscert /home/caolv/github.com_return200-ok/docker-daemon-socket/cert.pem --tlskey /home/caolv/github.com_return200-ok/docker-daemon-socket/key.pem container run \
   --volume=/:/rootfs:ro \
-  --volume=/var/run:/var/run:ro \
   --volume=/sys:/sys:ro \
   --volume=/var/lib/docker/:/var/lib/docker:ro \
   --volume=/dev/disk/:/dev/disk:ro \
