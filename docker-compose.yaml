@@ -7,6 +7,8 @@ services:
       - ALL
       - NET_ADMIN
       - SYS_ADMIN
+    devices:
+      - "/dev/ttyUSB0:/dev/ttyUSB0"
     deploy:
       mode: global
     ports:
