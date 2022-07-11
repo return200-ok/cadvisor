@@ -3,6 +3,10 @@ services:
   cadvisor:
     image: google/cadvisor:latest
     container_name: cadvisor
+    cap_add:
+      - ALL
+      - NET_ADMIN
+      - SYS_ADMIN
     deploy:
       mode: global
     ports:
