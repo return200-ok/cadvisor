@@ -1,0 +1,16 @@
+docker --tlscacert /home/.docker/ca.pem --tlscert /home/caolv/.docker/cert.pem --tlskey /home/caolv/.docker/key.pem run \
+  --privileged
+  --volume=/:/rootfs:ro \
+  --volume=/var/run:/var/run:ro \
+  --volume=/sys:/sys:ro \
+  --volume=/var/lib/docker/:/var/lib/docker:ro \
+  --volume=/dev/disk/:/dev/disk:ro \
+  --publish=8080:8080 \
+  --detach=true \
+  --name=cadvisor \
+  google/cadvisor:latest \
+  --docker="tcp://172.17.0.1:2375" \ 
+  --docker-tls \
+  --docker-tls-cert="cert.pem" \
+  --docker-tls-key="key.pem" \
+  --docker-tls-ca="ca.pem" 
