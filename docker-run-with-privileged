@@ -14,3 +14,5 @@ docker --tlscacert /home/.docker/ca.pem --tlscert /home/caolv/.docker/cert.pem -
   --docker-tls-cert="cert.pem" \
   --docker-tls-key="key.pem" \
   --docker-tls-ca="ca.pem" 
+
+#if docker config with tls, you must specific tlscert, tlskey when use privileged
