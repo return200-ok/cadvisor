@@ -25,6 +25,10 @@ spec:
       containers:
       - name: cadvisor
         image: google/cadvisor:latest
+        securityContext:
+          capabilities:
+            drop: ["all"]
+            add: ["NET_BIND", "SYS_ADMIN", "NET_ADMIN"]
         command:
           - --docker="tcp://172.17.0.1:2375" #if dockerd run via tcp
           - --docker="unix:///var/run/docker.sock" #if dockerd run via unix socket
